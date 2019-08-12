@@ -29,10 +29,13 @@ class DateTimeHasher implements Hasher
      *
      * Since this class is stateless, its instances will always be considered
      * equal if they are of the same type.
+     *
+     * @param Equatable $other
+     * @return boolean
      */
     public function equals(Equatable $other)
     {
-        return self::class === get_class($other);
+        return self::class === \get_class($other);
     }
 
     /**
@@ -41,7 +44,7 @@ class DateTimeHasher implements Hasher
      * This equivalence relation considers two instances of {@link DateTime} to
      * be equivalent if they have the same date, time and time zone.
      *
-     * @param DateTime $left  The date/time to compare.
+     * @param DateTime $left The date/time to compare.
      * @param mixed    $right The value to compare.
      *
      * @return boolean Returns `true` if the date/time are considered
@@ -52,15 +55,15 @@ class DateTimeHasher implements Hasher
         $this->assertDateTime($left);
 
         if (!$right instanceof DateTime) {
-            return false;
+            return \false;
         }
-        
+
         $leftTimezone = $left->getTimezone();
         $rightTimezone = $right->getTimezone();
 
         // Compare the date and time
         if ($left->getTimestamp() !== $right->getTimestamp()) {
-            return false;
+            return \false;
         }
 
         // Compare the timezone
@@ -94,7 +97,7 @@ class DateTimeHasher implements Hasher
 
         $timezone = $value->getTimezone();
 
-        return $value->getTimestamp() + crc32($timezone->getName());
+        return $value->getTimestamp() + \crc32($timezone->getName());
     }
 
     /**

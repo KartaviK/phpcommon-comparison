@@ -12,14 +12,14 @@
 namespace PhpCommon\Comparison\Tests\Comparator;
 
 use PhpCommon\Comparison\Comparator\CallbackComparator;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @since  1.0
  *
  * @author Marcos Passos <marcos@croct.com>
  */
-class CallbackComparatorTest extends PHPUnit_Framework_TestCase
+class CallbackComparatorTest extends TestCase
 {
     /**
      * @testdox The compare() method delegates calls to the callback function
@@ -28,14 +28,12 @@ class CallbackComparatorTest extends PHPUnit_Framework_TestCase
     {
         $callback = $this->getMockBuilder('stdClass')
             ->setMethods(['callback'])
-            ->getMock()
-        ;
+            ->getMock();
 
         $callback->expects($this->once())
             ->method('callback')
             ->with($this->identicalTo('foo'), $this->identicalTo('bar'))
-            ->willReturn(-1)
-        ;
+            ->willReturn(-1);
 
         $comparator = new CallbackComparator([$callback, 'callback']);
         $this->assertSame(-1, $comparator->compare('foo', 'bar'));

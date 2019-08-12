@@ -98,14 +98,14 @@ abstract class GenericEquivalence implements Equivalence
         // This exception should never be thrown unless a new primitive type
         // was introduced
         throw new InvalidArgumentException(
-            sprintf('Unknown type "%s".', $type)
+            \sprintf('Unknown type "%s".', $type)
         );
     }
 
     /**
      * Checks whether an array is equivalent to another value.
      *
-     * @param array $left  The array to compare.
+     * @param array $left The array to compare.
      * @param mixed $right The other value to compare.
      *
      * @return boolean Returns `true` if the given values are considered
@@ -118,7 +118,7 @@ abstract class GenericEquivalence implements Equivalence
     /**
      * Checks whether a boolean value is equivalent to another value.
      *
-     * @param boolean $left  The boolean value to compare.
+     * @param boolean $left The boolean value to compare.
      * @param mixed   $right The other value to compare.
      *
      * @return boolean Returns `true` if the given values are considered
@@ -131,7 +131,7 @@ abstract class GenericEquivalence implements Equivalence
     /**
      * Checks whether a floating-point number is equivalent to another value.
      *
-     * @param float $left  The floating-point number to compare.
+     * @param float $left The floating-point number to compare.
      * @param mixed $right The other value to compare.
      *
      * @return boolean Returns `true` if the given values are considered
@@ -144,7 +144,7 @@ abstract class GenericEquivalence implements Equivalence
     /**
      * Checks whether an integer number is equivalent to another value.
      *
-     * @param integer $left  The integer number to compare.
+     * @param integer $left The integer number to compare.
      * @param mixed   $right The other value to compare.
      *
      * @return boolean Returns `true` if the given values are considered
@@ -169,7 +169,7 @@ abstract class GenericEquivalence implements Equivalence
     /**
      * Checks whether an object is equivalent to another value.
      *
-     * @param object $left  The object to compare.
+     * @param object $left The object to compare.
      * @param mixed  $right The other value to compare.
      *
      * @return boolean Returns `true` if the given values are considered
@@ -182,7 +182,7 @@ abstract class GenericEquivalence implements Equivalence
     /**
      * Checks whether a resource is equivalent to another value.
      *
-     * @param resource $left  The resource to compare.
+     * @param resource $left The resource to compare.
      * @param mixed    $right The other value to compare.
      *
      * @return boolean Returns `true` if the given values are considered
@@ -195,7 +195,7 @@ abstract class GenericEquivalence implements Equivalence
     /**
      * Checks whether a string is equivalent to another value.
      *
-     * @param string $left  The string value to compare.
+     * @param string $left The string value to compare.
      * @param mixed  $right The other value to compare.
      *
      * @return boolean Returns `true` if the given values are considered

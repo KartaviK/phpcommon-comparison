@@ -3,10 +3,13 @@
 namespace PhpCommon\Comparison\Tests;
 
 use PhpCommon\Comparison\IncomparableException;
-use PHPUnit_Framework_TestCase;
-use Exception;
+use PHPUnit\Framework\TestCase;
 
-class IncomparableExceptionTest extends PHPUnit_Framework_TestCase
+/**
+ * Class IncomparableExceptionTest.
+ * @package PhpCommon\Comparison\Tests
+ */
+class IncomparableExceptionTest extends TestCase
 {
     /**
      * @expectedException \PhpCommon\Comparison\IncomparableException
@@ -17,7 +20,7 @@ class IncomparableExceptionTest extends PHPUnit_Framework_TestCase
      */
     public function testForTypeCreatesAnExceptionForIncomparableTypes()
     {
-        $previous = new Exception();
+        $previous = new \Exception();
         $exception = IncomparableException::forType('string', 1, 100, $previous);
         $this->assertSame($previous, $exception->getPrevious());
 

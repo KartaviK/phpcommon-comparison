@@ -11,18 +11,16 @@
 
 namespace PhpCommon\Comparison\Tests\Hasher;
 
-use PhpCommon\Comparison\Hasher;
 use PhpCommon\Comparison\Hasher\GenericHasher;
 use phpmock\phpunit\PHPMock;
-use PHPUnit_Framework_TestCase;
-use stdClass;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @since  1.0
  *
  * @author Marcos Passos <marcos@croct.com>
  */
-class GenericHasherTest extends PHPUnit_Framework_TestCase
+class GenericHasherTest extends TestCase
 {
     use PHPMock;
 
@@ -99,7 +97,7 @@ class GenericHasherTest extends PHPUnit_Framework_TestCase
      */
     public function testHashDelegatesHashingOfObjectsToHashObjectMethod()
     {
-        $value = new stdClass();
+        $value = new \stdClass();
 
         $this->hasher->expects($this->once())
             ->method('hashObject')

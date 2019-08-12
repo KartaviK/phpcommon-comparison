@@ -11,13 +11,11 @@
 
 namespace PhpCommon\Comparison\Tests\Fixtures;
 
-use DateTime;
-
 /**
  * @since  1.0
  *
  * @author Marcos Passos <marcos@croct.com>
  */
-class CustomDate extends DateTime
+class CustomDate extends \DateTime
 {
 }

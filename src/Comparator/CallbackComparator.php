@@ -25,16 +25,16 @@ use PhpCommon\Comparison\Comparator;
 class CallbackComparator implements Comparator
 {
     /**
-     * @var callable
+     * @var \Closure
      */
     protected $callback;
 
     /**
      * CallbackComparator constructor.
      *
-     * @param callable $callback
+     * @param \Closure $callback
      */
-    public function __construct(callable $callback)
+    public function __construct(\Closure $callback)
     {
         $this->callback = $callback;
     }
@@ -44,6 +44,6 @@ class CallbackComparator implements Comparator
      */
     public function compare($left, $right)
     {
-        return call_user_func_array($this->callback, [$left, $right]);
+        return \call_user_func_array($this->callback, [$left, $right]);
     }
 }

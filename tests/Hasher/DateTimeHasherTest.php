@@ -11,20 +11,15 @@
 
 namespace PhpCommon\Comparison\Tests\Hasher;
 
-use PhpCommon\Comparison\Hasher;
 use PhpCommon\Comparison\Hasher\DateTimeHasher;
-use DateTime;
-use DateTimeZone;
-use DateTimeImmutable;
-use PHPUnit_Framework_TestCase;
-use DateTimeInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @since  1.0
  *
  * @author Marcos Passos <marcos@croct.com>
  */
-class DateTimeHasherTest extends PHPUnit_Framework_TestCase
+class DateTimeHasherTest extends TestCase
 {
     /**
      * @var DateTimeHasher
@@ -66,39 +61,39 @@ class DateTimeHasherTest extends PHPUnit_Framework_TestCase
     {
         return [
             [
-                DateTime::createFromFormat('Y-m-d', '2016-01-01'),
-                DateTime::createFromFormat('Y-m-d', '2016-01-01'),
+                \DateTime::createFromFormat('Y-m-d', '2016-01-01'),
+                \DateTime::createFromFormat('Y-m-d', '2016-01-01'),
             ],
             [
-                DateTime::createFromFormat('Y-m-d H:i:s', '2016-01-01 00:00:01'),
-                DateTime::createFromFormat('Y-m-d H:i:s', '2016-01-01 00:00:01'),
+                \DateTime::createFromFormat('Y-m-d H:i:s', '2016-01-01 00:00:01'),
+                \DateTime::createFromFormat('Y-m-d H:i:s', '2016-01-01 00:00:01'),
             ],
             [
-                new DateTime('@1171502725'),
-                new DateTime('@1171502725')
+                new \DateTime('@1171502725'),
+                new \DateTime('@1171502725')
             ],
             [
-                new DateTimeImmutable('@1171502726'),
-                new DateTimeImmutable('@1171502726')
+                new \DateTimeImmutable('@1171502726'),
+                new \DateTimeImmutable('@1171502726')
             ],
             [
-                new DateTime('@1171502725'),
-                new DateTimeImmutable('@1171502725'),
+                new \DateTime('@1171502725'),
+                new \DateTimeImmutable('@1171502725'),
             ]
         ];
     }
 
     /**
-     * @param DateTimeInterface $left
-     * @param DateTimeInterface $right
+     * @param \DateTimeInterface $left
+     * @param \DateTimeInterface $right
      *
      * @dataProvider getEquivalentDates
      *
      * @testdox The equivalent() method returns true if DateTime instances have the same date, time and timezone
      */
     public function testEquivalentReturnsTrueIfInstancesHaveSameDateTimeAndTimeZone(
-        DateTimeInterface $left,
-        DateTimeInterface $right
+        \DateTimeInterface $left,
+        \DateTimeInterface $right
     ) {
         $this->assertTrue($this->hasher->equivalent($left, $right));
     }
@@ -110,55 +105,55 @@ class DateTimeHasherTest extends PHPUnit_Framework_TestCase
     {
         return [
             [
-                DateTime::createFromFormat('Y-m-d', '2016-01-01'),
-                DateTime::createFromFormat('Y-m-d', '2016-01-02'),
+                \DateTime::createFromFormat('Y-m-d', '2016-01-01'),
+                \DateTime::createFromFormat('Y-m-d', '2016-01-02'),
             ],
 
             [
-                DateTime::createFromFormat('Y-m-d H:i:s', '2016-01-01 00:00:00'),
-                DateTime::createFromFormat('Y-m-d H:i:s', '2016-01-01 00:00:01'),
+                \DateTime::createFromFormat('Y-m-d H:i:s', '2016-01-01 00:00:00'),
+                \DateTime::createFromFormat('Y-m-d H:i:s', '2016-01-01 00:00:01'),
             ],
 
             [
-                new DateTime('@1171502725'),
-                new DateTime('@1171502726')
+                new \DateTime('@1171502725'),
+                new \DateTime('@1171502726')
             ],
 
             [
-                DateTime::createFromFormat(
+                \DateTime::createFromFormat(
                     'Y-m-d',
                     '2016-05-01',
-                    new DateTimeZone('America/Sao_Paulo')
+                    new \DateTimeZone('America/Sao_Paulo')
                 ),
-                DateTime::createFromFormat(
+                \DateTime::createFromFormat(
                     'Y-m-d',
                     '2016-05-01',
-                    new DateTimeZone('America/Argentina/Buenos_Aires')
+                    new \DateTimeZone('America/Argentina/Buenos_Aires')
                 )
             ],
 
             [
-                new DateTime('@1171502725'),
-                new DateTimeImmutable('@1171502726')
+                new \DateTime('@1171502725'),
+                new \DateTimeImmutable('@1171502726')
             ],
 
             [
-                new DateTime('@1171502725'),
+                new \DateTime('@1171502725'),
                 '1171502725'
             ]
         ];
     }
 
     /**
-     * @param DateTimeInterface $left
-     * @param mixed $right
+     * @param \DateTimeInterface $left
+     * @param mixed             $right
      *
      * @dataProvider getNonEquivalentDates
      *
      * @testdox The equivalent() method returns false if DateTime instances have different date, time or timezone
      */
     public function testEquivalentReturnsFalseIfInstancesHaveDifferentDateTimeOrTimeZone(
-        DateTimeInterface $left,
+        \DateTimeInterface $left,
         $right
     ) {
         $this->assertFalse($this->hasher->equivalent($left, $right));
@@ -175,14 +170,14 @@ class DateTimeHasherTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param DateTimeInterface $left
-     * @param DateTimeInterface $right
+     * @param \DateTimeInterface $left
+     * @param \DateTimeInterface $right
      *
      * @dataProvider getEquivalentDates
      *
      * @testdox The equivalent() produces the same hash-code for equivalent dates
      */
-    public function testHashIsConsistentWithEquivalent(DateTimeInterface $left, DateTimeInterface $right)
+    public function testHashIsConsistentWithEquivalent(\DateTimeInterface $left, \DateTimeInterface $right)
     {
         $this->assertTrue($this->hasher->equivalent($left, $right));
 

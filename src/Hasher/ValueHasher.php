@@ -58,31 +58,31 @@ class ValueHasher extends IdentityHasher
     public function equals(Equatable $other)
     {
         if ($this === $other) {
-            return true;
+            return \true;
         }
 
         if (!parent::equals($other)) {
-            return false;
+            return \false;
         }
 
         /** @var ValueHasher $other */
         $equivalences = $other->getEquivalences();
 
-        if (count($this->equivalences) !== count($equivalences)) {
-            return false;
+        if (\count($this->equivalences) !== \count($equivalences)) {
+            return \false;
         }
 
         foreach ($this->equivalences as $type => $equivalence) {
             if (!isset($equivalences[$type])) {
-                return false;
+                return \false;
             }
 
             if (!$equivalence->equals($equivalences[$type])) {
-                return false;
+                return \false;
             }
         }
 
-        return true;
+        return \true;
     }
 
     /**
@@ -116,18 +116,18 @@ class ValueHasher extends IdentityHasher
     protected function getEquivalence($className)
     {
         if (empty($this->equivalences)) {
-            return false;
+            return \false;
         }
 
         if (isset($this->equivalences[$className])) {
             return $this->equivalences[$className];
         }
 
-        if (($parent = get_parent_class($className)) !== false) {
+        if (($parent = \get_parent_class($className)) !== \false) {
             return $this->getEquivalence($parent);
         }
 
-        return false;
+        return \false;
     }
 
     /**
@@ -135,23 +135,23 @@ class ValueHasher extends IdentityHasher
      */
     protected function equivalentArray(array $left, $right)
     {
-        if (!is_array($right) || count($left) !== count($right)) {
-            return false;
+        if (!\is_array($right) || \count($left) !== \count($right)) {
+            return \false;
         }
 
         foreach ($left as $key => $value) {
-            if (!$this->equivalentString($key, key($right))) {
-                return false;
+            if (!$this->equivalentString($key, \key($right))) {
+                return \false;
             }
 
-            if (!$this->equivalent($value, current($right))) {
-                return false;
+            if (!$this->equivalent($value, \current($right))) {
+                return \false;
             }
 
-            next($right);
+            \next($right);
         }
 
-        return true;
+        return \true;
     }
 
     /**
@@ -171,7 +171,7 @@ class ValueHasher extends IdentityHasher
     protected function equivalentObject($left, $right)
     {
         if ($left instanceof Equatable xor $right instanceof Equatable) {
-            return false;
+            return \false;
         }
 
         if ($left instanceof Equatable) {
@@ -180,14 +180,14 @@ class ValueHasher extends IdentityHasher
 
         $equivalence = $this->getEquivalence(get_class($left));
 
-        if ($equivalence !== false) {
+        if ($equivalence !== \false) {
             return $equivalence->equivalent($left, $right);
         }
 
-        if (is_object($right)) {
-            $equivalence = $this->getEquivalence(get_class($right));
+        if (\is_object($right)) {
+            $equivalence = $this->getEquivalence(\get_class($right));
 
-            if ($equivalence !== false) {
+            if ($equivalence !== \false) {
                 return $equivalence->equivalent($right, $left);
             }
         }
@@ -215,14 +215,14 @@ class ValueHasher extends IdentityHasher
      *    the hash function
      *
      * @see hashObject()
-     * @see PhpCommon\Comparison\Hashable::getHash()
+     * @see \PhpCommon\Comparison\Hashable::getHash()
      */
     protected function hashObject($value)
     {
         if ($value instanceof Hashable) {
             return self::HASH_OBJECT + $value->getHash();
         } elseif ($value instanceof Equatable) {
-            throw new InvalidArgumentException(sprintf(
+            throw new InvalidArgumentException(\sprintf(
                 'Any object implementing %s interface must also implement %s ' .
                 'interface, otherwise the resulting hash code cannot be ' .
                 'guaranteed by %s to be distributable across equivalences.',
@@ -232,7 +232,7 @@ class ValueHasher extends IdentityHasher
             ));
         }
 
-        $equivalence = $this->getEquivalence(get_class($value));
+        $equivalence = $this->getEquivalence(\get_class($value));
 
         if ($equivalence instanceof Hasher) {
             return self::HASH_OBJECT + $equivalence->hash($value);

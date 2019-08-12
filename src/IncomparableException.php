@@ -11,33 +11,30 @@
 
 namespace PhpCommon\Comparison;
 
-use InvalidArgumentException;
-use Exception;
-
 /**
  * Thrown when values provided for comparison are incomparable.
  *
  * @author Marcos Passos <marcos@croct.com>
  */
-class IncomparableException extends InvalidArgumentException
+class IncomparableException extends \InvalidArgumentException
 {
     /**
      * Creates a new exception for the given value type.
      *
-     * @param string         $type  The name of the expected type.
+     * @param string         $type The name of the expected type.
      * @param mixed          $value The specified value.
-     * @param int            $code  The exception code.
-     * @param Exception|null $cause The exception that caused this exception.
+     * @param int            $code The exception code.
+     * @param \Exception|null $cause The exception that caused this exception.
      *
-     * @return UnexpectedTypeException The new exception.
+     * @return IncomparableException The new exception.
      */
-    public static function forType($type, $value, $code = 0, Exception $cause = null)
+    public static function forType($type, $value, $code = 0, \Exception $cause = \null)
     {
         return new self(
             sprintf(
                 'Unable to compare "%s" with "%s".',
                 $type,
-                is_object($value) ? get_class($value) : gettype($value)
+                \is_object($value) ? \get_class($value) : \gettype($value)
             ),
             $code,
             $cause

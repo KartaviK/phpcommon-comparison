@@ -11,15 +11,12 @@
 
 namespace PhpCommon\Comparison;
 
-use Exception;
-use InvalidArgumentException;
-
 /**
  * Thrown when a value does not match an expected type.
  *
  * @author Marcos Passos <marcos@croct.com>
  */
-class UnexpectedTypeException extends InvalidArgumentException
+class UnexpectedTypeException extends \UnexpectedValueException
 {
     /**
      * Creates a new exception for the given value type.
@@ -27,11 +24,11 @@ class UnexpectedTypeException extends InvalidArgumentException
      * @param string         $type  The name of the expected type.
      * @param mixed          $value The specified value.
      * @param int            $code  The exception code.
-     * @param Exception|null $cause The exception that caused this exception.
+     * @param \Exception|null $cause The exception that caused this exception.
      *
      * @return UnexpectedTypeException The new exception.
      */
-    public static function forType($type, $value, $code = 0, Exception $cause = null)
+    public static function forType($type, $value, $code = 0, \Exception $cause = null)
     {
         return new self(
             sprintf(

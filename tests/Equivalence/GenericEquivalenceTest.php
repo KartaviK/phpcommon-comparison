@@ -13,17 +13,15 @@ namespace PhpCommon\Comparison\Tests\Equivalence;
 
 use phpmock\phpunit\PHPMock;
 use PhpCommon\Comparison\Equivalence\GenericEquivalence;
-use PhpCommon\Comparison\Hasher;
 use PhpCommon\Comparison\Hasher\GenericHasher;
-use PHPUnit_Framework_TestCase;
-use stdClass;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @since  1.0
  *
  * @author Marcos Passos <marcos@croct.com>
  */
-class GenericEquivalenceTest extends PHPUnit_Framework_TestCase
+class GenericEquivalenceTest extends TestCase
 {
     use PHPMock;
 
@@ -46,7 +44,7 @@ class GenericEquivalenceTest extends PHPUnit_Framework_TestCase
     {
         $className = GenericEquivalence::class;
         $namespace = substr($className, 0, strrpos($className, '\\'));
-        
+
         $gettype = $this->getFunctionMock($namespace, 'gettype');
         $gettype->expects($this->once())->willReturn('foo');
 
@@ -103,8 +101,8 @@ class GenericEquivalenceTest extends PHPUnit_Framework_TestCase
      */
     public function testHashDelegatesComparisonOfObjectsToEquivalentObjectMethod()
     {
-        $left = new stdClass();
-        $right = new stdClass();
+        $left = new \stdClass();
+        $right = new \stdClass();
 
         $this->equivalence->expects($this->once())
             ->method('equivalentObject')

@@ -3,10 +3,13 @@
 namespace PhpCommon\Comparison\Tests;
 
 use PhpCommon\Comparison\UnexpectedTypeException;
-use PHPUnit_Framework_TestCase;
-use Exception;
+use PHPUnit\Framework\TestCase;
 
-class UnexpectedTypeExceptionTest extends PHPUnit_Framework_TestCase
+/**
+ * Class UnexpectedTypeExceptionTest.
+ * @package PhpCommon\Comparison\Tests
+ */
+class UnexpectedTypeExceptionTest extends TestCase
 {
     /**
      * @expectedException \PhpCommon\Comparison\UnexpectedTypeException

@@ -160,7 +160,7 @@ class IdentityHasherTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider getValuesForTransitivityTests
      *
-     *  @testdox The equivalent() method is transitive
+     * @testdox The equivalent() method is transitive
      */
     public function testEquivalentIsTransitive($a, $b, $c)
     {
@@ -194,7 +194,7 @@ class IdentityHasherTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider getValuesForReflexivityTests
      *
-     *  @testdox The equivalent() method is reflexive
+     * @testdox The equivalent() method is reflexive
      */
     public function testEquivalentIsReflexive($value)
     {
@@ -218,7 +218,7 @@ class IdentityHasherTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider getValuesForSymmetryTests
      *
-     *  @testdox The equivalent() method is symmetric
+     * @testdox The equivalent() method is symmetric
      */
     public function testEquivalentIsSymmetric($left, $right)
     {

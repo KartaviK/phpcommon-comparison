@@ -19,8 +19,6 @@ use PhpCommon\Comparison\Hashable;
 use PhpCommon\Comparison\Hasher;
 use PhpCommon\Comparison\Tests\Fixtures\CustomDate;
 use PhpCommon\Comparison\Tests\Fixtures\User;
-use stdClass;
-use DateTime;
 
 /**
  * @since  1.0
@@ -149,8 +147,8 @@ class ValueHasherTest extends PHPUnit_Framework_TestCase
     public function getEquivalentValues()
     {
         return [
-            [$object = new stdClass(), $object],
-            [$resource = curl_init(), $resource],
+            [$object = new \stdClass(), $object],
+            [$resource = \curl_init(), $resource],
             [new User(1), new User(1)],
             [[1, null, true], [1, null, true]],
             [[], []],
@@ -178,21 +176,21 @@ class ValueHasherTest extends PHPUnit_Framework_TestCase
     public function getNonEquivalentValues()
     {
         return [
-            [true, new stdClass()],
-            [new stdClass(), new stdClass()],
+            [true, new \stdClass()],
+            [new \stdClass(), new \stdClass()],
             [new User(1), new User(2)],
             [new User(1), true],
             [curl_init(), curl_init()],
             [[1, null, true], [1, true, null]],
             [[1, null], [1]],
-            [[new stdClass()], [new stdClass()]],
+            [[new \stdClass()], [new \stdClass()]],
             [[1], [true]],
             [[0], [false]],
             [[0], [null]],
             [[false], [null]],
-            [[true], [new stdClass()]],
+            [[true], [new \stdClass()]],
             [[], [1]],
-            [[1, null, 2, ], ['a' => 1, 'b' => null, 'c' => 2]],
+            [[1, null, 2,], ['a' => 1, 'b' => null, 'c' => 2]],
         ];
     }
 
@@ -229,7 +227,7 @@ class ValueHasherTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider getValuesForTransitivityTests
      *
-     *  @testdox The equivalent() method is transitive
+     * @testdox The equivalent() method is transitive
      */
     public function testEquivalentIsTransitive($a, $b, $c)
     {
@@ -245,7 +243,7 @@ class ValueHasherTest extends PHPUnit_Framework_TestCase
     {
         return [
             [new User(1)],
-            [new stdClass()],
+            [new \stdClass()],
             [curl_init()],
             [[]],
             [[1, null, true], [1, null, true]]
@@ -257,7 +255,7 @@ class ValueHasherTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider getValuesForReflexivityTests
      *
-     *  @testdox The equivalent() method is reflexive
+     * @testdox The equivalent() method is reflexive
      */
     public function testEquivalentIsReflexive($value)
     {
@@ -281,7 +279,7 @@ class ValueHasherTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider getValuesForSymmetryTests
      *
-     *  @testdox The equivalent() method is symmetric
+     * @testdox The equivalent() method is symmetric
      */
     public function testEquivalentIsSymmetric($left, $right)
     {
@@ -312,7 +310,7 @@ class ValueHasherTest extends PHPUnit_Framework_TestCase
      */
     public function testEquivalentReturnsFalseIfEquatableObjectsAreOfDifferentTypes()
     {
-        $object = new stdClass();
+        $object = new \stdClass();
 
         $equatable = $this->createMock(Equatable::class);
         $equatable->expects($this->never())
@@ -326,8 +324,8 @@ class ValueHasherTest extends PHPUnit_Framework_TestCase
      */
     public function testEquivalentComparesObjectsForIdentityByDefault()
     {
-        $left = new stdClass();
-        $right = new stdClass();
+        $left = new \stdClass();
+        $right = new \stdClass();
 
         $this->assertTrue($this->hasher->equivalent($left, $left));
         $this->assertFalse($this->hasher->equivalent($left, $right));
@@ -367,8 +365,8 @@ class ValueHasherTest extends PHPUnit_Framework_TestCase
      */
     public function testEquivalentDelegatesComparisonToExternalEquivalence()
     {
-        $left = new DateTime();
-        $right = new stdClass();
+        $left = new \DateTime();
+        $right = new \stdClass();
 
         $custom = $this->createMock(Equivalence::class);
         $custom->expects($this->exactly(4))

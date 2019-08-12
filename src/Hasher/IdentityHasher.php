@@ -30,7 +30,7 @@ class IdentityHasher extends GenericHasher
      * Constant used to compute hash codes for `null`
      */
     const HASH_NULL = 0;
-    
+
     /**
      * Constant used to compute hash codes for arrays
      */
@@ -66,10 +66,13 @@ class IdentityHasher extends GenericHasher
      *
      * Since this class is stateless, its instances will always be considered
      * equal if they are of the same type.
+     *
+     * @param Equatable $other
+     * @return boolean
      */
     public function equals(Equatable $other)
     {
-        return static::class === get_class($other);
+        return static::class === \get_class($other);
     }
 
     /**
@@ -227,7 +230,7 @@ class IdentityHasher extends GenericHasher
      */
     protected function hashFloat($value)
     {
-        return unpack('i', pack('f', $value))[1];
+        return \unpack('i', \pack('f', $value))[1];
     }
 
     /**
@@ -267,7 +270,7 @@ class IdentityHasher extends GenericHasher
      */
     protected function hashObject($value)
     {
-        return self::HASH_OBJECT * $this->hashString(spl_object_hash($value));
+        return self::HASH_OBJECT * $this->hashString(\spl_object_hash($value));
     }
 
     /**
@@ -292,15 +295,15 @@ class IdentityHasher extends GenericHasher
     protected function hashString($value)
     {
         $hash = self::HASH_STRING;
-        $value = strval($value);
-        $length = strlen($value);
+        $value = \strval($value);
+        $length = \strlen($value);
 
         if ($length === 0) {
             return $hash;
         }
 
         for ($i = 0; $i < $length; $i++) {
-            $hash = Math::add(Math::multiply($hash, 31), ord($value[$i]));
+            $hash = Math::add(Math::multiply($hash, 31), \ord($value[$i]));
         }
 
         return $hash;
@@ -323,6 +326,6 @@ class IdentityHasher extends GenericHasher
      */
     protected function hashResource($value)
     {
-        return self::HASH_RESOURCE * (1 + (int) $value);
+        return self::HASH_RESOURCE * (1 + (int)$value);
     }
 }

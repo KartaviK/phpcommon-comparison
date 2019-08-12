@@ -60,7 +60,7 @@ interface Equivalence extends Equatable
      * @link https://en.wikipedia.org/wiki/Equivalence_relation Equivalence
      *                                                          relation
      *
-     * @param mixed $left  The left-hand value to compare.
+     * @param mixed $left The left-hand value to compare.
      * @param mixed $right The right-hand value to compare.
      *
      * @return boolean Returns `true` if the given values are considered

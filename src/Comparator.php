@@ -62,7 +62,7 @@ interface Comparator
      * that is inconsistent with the natural equivalence relation of the
      * values."_.
      *
-     * @param mixed $left  The left-hand side to compare with.
+     * @param mixed $left The left-hand side to compare with.
      * @param mixed $right The right-hand side to compare with.
      *
      * @return integer Returns a negative integer, zero, or a positive integer
