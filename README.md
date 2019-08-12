@@ -9,7 +9,7 @@
 
 Latest release: [1.0.0-beta](https://packagist.org/packages/phpcommon/comparison#1.0.0)
 
-PHP 5.4+ library to represent equivalence relations and strategies for hashing
+PHP 5.5+ library to represent equivalence relations and strategies for hashing
 and sorting values.
 
 Equivalence relations are useful to establish a generalized way for comparing
