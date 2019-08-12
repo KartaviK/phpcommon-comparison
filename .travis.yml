@@ -1,5 +1,9 @@
 language: php
 
+dist: trusty
+
+sudo: false
+
 php:
   - '5.4'
   - '5.5'
@@ -10,7 +14,9 @@ php:
   - '7.3'
   - '7.4snapshot'
 
-sudo: false
+cache:
+  directories:
+    - $HOME/.composer/cache
 
 before_script:
   - composer self-update
