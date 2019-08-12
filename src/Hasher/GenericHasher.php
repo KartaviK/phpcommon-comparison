@@ -13,7 +13,6 @@ namespace PhpCommon\Comparison\Hasher;
 
 use PhpCommon\Comparison\Equivalence\GenericEquivalence;
 use PhpCommon\Comparison\Hasher;
-use InvalidArgumentException;
 
 /**
  * Base class for implementing generic hashers.
@@ -28,7 +27,7 @@ abstract class GenericHasher extends GenericEquivalence implements Hasher
     public function hash($value)
     {
         // Delegates the call to the proper hash*() method
-        $type = \gettype($value);
+        $type = gettype($value);
 
         switch ($type) {
             case self::TYPE_ARRAY:
@@ -58,7 +57,7 @@ abstract class GenericHasher extends GenericEquivalence implements Hasher
 
         // This exception should never be thrown unless a new primitive type
         // was introduced
-        throw new InvalidArgumentException(
+        throw new \InvalidArgumentException(
             \sprintf('Unknown type "%s".', $type)
         );
     }
