@@ -27,7 +27,7 @@ abstract class GenericHasher extends GenericEquivalence implements Hasher
     public function hash($value)
     {
         // Delegates the call to the proper hash*() method
-        $type = gettype($value);
+        $type = \gettype($value);
 
         switch ($type) {
             case self::TYPE_ARRAY:
@@ -51,15 +51,10 @@ abstract class GenericHasher extends GenericEquivalence implements Hasher
             case self::TYPE_RESOURCE:
                 return $this->hashResource($value);
 
-            case self::TYPE_STRING:
+            // string
+            default:
                 return $this->hashString($value);
         }
-
-        // This exception should never be thrown unless a new primitive type
-        // was introduced
-        throw new \InvalidArgumentException(
-            \sprintf('Unknown type "%s".', $type)
-        );
     }
 
     /**

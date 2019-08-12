@@ -35,22 +35,6 @@ class GenericHasherTest extends TestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     *
-     * @testdox The hash() method throws an exception if the given value does not match the expected type
-     */
-    public function testHashThrowsExceptionIfValueIsOfAnUnexpectedType()
-    {
-        $className = GenericHasher::class;
-        $namespace = substr($className, 0, strrpos($className, '\\'));
-
-        $gettype = $this->getFunctionMock($namespace, 'gettype');
-        $gettype->expects($this->once())->willReturn('foo');
-
-        $this->hasher->hash(1);
-    }
-
-    /**
      * @testdox The hash() method delegates hashing of strings to the hashString() method
      */
     public function testHashDelegatesHashingOfStringsToHashStringMethod()
