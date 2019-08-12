@@ -25,16 +25,16 @@ use PhpCommon\Comparison\Comparator;
 class CallbackComparator implements Comparator
 {
     /**
-     * @var \Closure
+     * @var callable
      */
     protected $callback;
 
     /**
      * CallbackComparator constructor.
      *
-     * @param \Closure $callback
+     * @param callable $callback
      */
-    public function __construct(\Closure $callback)
+    public function __construct(callable $callback)
     {
         $this->callback = $callback;
     }
