@@ -11,7 +11,7 @@
 
 namespace PhpCommon\Comparison\Tests\Hasher;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use PhpCommon\Comparison\Equatable;
 use PhpCommon\Comparison\Equivalence;
 use PhpCommon\Comparison\Hasher\ValueHasher;
@@ -25,7 +25,7 @@ use PhpCommon\Comparison\Tests\Fixtures\User;
  *
  * @author Marcos Passos <marcos@croct.com>
  */
-class ValueHasherTest extends PHPUnit_Framework_TestCase
+class ValueHasherTest extends TestCase
 {
     /**
      * @var ValueHasher

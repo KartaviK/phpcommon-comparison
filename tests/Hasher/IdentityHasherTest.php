@@ -11,7 +11,7 @@
 
 namespace PhpCommon\Comparison\Tests\Equivalence;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use PhpCommon\Comparison\Hasher\IdentityHasher;
 use stdClass;
 
@@ -20,7 +20,7 @@ use stdClass;
  *
  * @author Marcos Passos <marcos@croct.com>
  */
-class IdentityHasherTest extends PHPUnit_Framework_TestCase
+class IdentityHasherTest extends TestCase
 {
     /**
      * @var IdentityHasher
