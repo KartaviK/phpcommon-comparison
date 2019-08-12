@@ -20,7 +20,7 @@ class UnexpectedTypeExceptionTest extends TestCase
      */
     public function testForTypeCreatesAnExceptionForIncomparableTypes()
     {
-        $previous = new Exception();
+        $previous = new \Exception();
         $exception = UnexpectedTypeException::forType('integer', 'a', 100, $previous);
         $this->assertSame($previous, $exception->getPrevious());
 
